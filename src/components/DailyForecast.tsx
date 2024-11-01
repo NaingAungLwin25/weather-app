@@ -15,7 +15,7 @@ const DailyForecast: React.FC<DailyForecastProps> = ({ forecastday }) => {
             {formatDate(day.date)}
           </div>
           <div className="flex w-96 lg:w-3/4 justify-center items-center">
-            <div className="flex items-center justify-end w-1/4 pr-10">
+            <div className="flex items-center justify-end w-[40%] xs:w-[50%] pr-10">
               <span className="font-semibold">
                 {day.day.daily_chance_of_rain}%
               </span>
@@ -33,9 +33,9 @@ const DailyForecast: React.FC<DailyForecastProps> = ({ forecastday }) => {
             <img
               src={`https:${day.day.condition.icon}`}
               alt="current weather image"
-              className="w-14 h-14"
+              className="w-14 h-14 xs:w-10 xs:h-10"
             />
-            <span className="font-semibold sm:text-lg w-1/3 text-right">
+            <span className="font-semibold sm:text-lg w-[30%] text-right">
               {Math.floor(day.day.mintemp_c)}° / {Math.floor(day.day.maxtemp_c)}
               °
             </span>
