@@ -1,19 +1,21 @@
 import axios from "axios";
 
+const baseURL = import.meta.env.VITE_API_URL;
+const key = import.meta.env.VITE_API_KEY;
+
 const api = axios.create({
-  baseURL: "https://api.weatherapi.com/v1",
+  baseURL,
   headers: {
     "Content-Type": "application/json",
   },
-  timeout: 10000
+  timeout: 10000,
 });
-
 
 api.interceptors.request.use(
   (config) => {
     config.params = {
       ...config.params,
-      key: "a190c50898e643bdab6130820243010",
+      key,
     };
     return config;
   },

@@ -10,6 +10,7 @@ import Wrapper from "../layouts/Wrapper";
 import api from "../services/api";
 import { Forecast, Hour } from "../models";
 import { getCurrentDayForecastHours } from "../services/date";
+import { BROWSER_NOT_SUPPORT_GEOLOCATION, CAN_GET_SEARCH_WEATHER_LOCATION, ERROR_MESSAGE_CAN_NOT_GET_LOCATION } from "../consts";
 
 const MainPage: React.FC = () => {
   const [isShowError, setIsShowError] = useState<boolean>(false);
@@ -34,7 +35,7 @@ const MainPage: React.FC = () => {
             setLocation(region);
           } catch {
             showError(
-              "Can't get current location. Check your internet connection."
+              ERROR_MESSAGE_CAN_NOT_GET_LOCATION
             );
           }
         },
@@ -43,7 +44,7 @@ const MainPage: React.FC = () => {
         }
       );
     } else {
-      showError("Geolocation is not supported by this browser.");
+      showError(BROWSER_NOT_SUPPORT_GEOLOCATION);
     }
   }, []);
 
@@ -65,7 +66,7 @@ const MainPage: React.FC = () => {
       const currentDayForecastHours = getCurrentDayForecastHours(forecastHours);
       setCurrentDayForecast(currentDayForecastHours);
     } catch {
-      showError("Can't get weather for location.");
+      showError(CAN_GET_SEARCH_WEATHER_LOCATION);
     }
     setLoading(false);
   }, [location]);
